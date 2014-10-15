@@ -79,14 +79,14 @@ var UNITS = {
     NUMBERS: ["Binary", "Decimal", "Hexadecimal", "Octal"],
 
     POWER: ["Boiler Horsepower", "British Thermal Units per Hour",
-        "Calorie per Second", "Electrical Horsepower",
+        "Calorie per Second","Decibel Milliwatts" , "Decibel Watts", "Electrical Horsepower",
         "Pound-Foot per Second", "Gigawatts", "Kilowatts",
         "Mechanical Horsepower", "Megawatts", "Terawatts", "Watts"
     ],
 
     PRESSURE: ["Bar", "Dynes per Square Centimeter",
         "Feet of Water Column at 4°C", "Hectopascals",
-        "Inches of Water Column at 4°C", "Megapascals", "Kilopascals",
+        "Inches of Water Column at 4°C", "Kilopascals", "Megapascals",
         "Millibar", "Millimeters of Mercury at 0°C",
         "Pascals(Newton per Meter)", "Pounds per Square Inch",
         "Standard Atmospheres", "Torr"

@@ -312,7 +312,7 @@ Page {
                 }
             } else if (unittype === "POWER") {
                 pageHeader.title = "Power";
-                items = ["Btu/h","hpb","cal/s","hpe",
+                items = ["Btu/h","hpb","cal/s", "dBm", "dBW", "hpe",
                          "GW","kW","hp","MW","ftlb/s","TW","W"];
                 HV.UNITS[unittype].sort();
                 count = HV.UNITS[unittype].length;
@@ -323,7 +323,7 @@ Page {
             } else if (unittype === "PRESSURE") {
                 pageHeader.title = "Pressure";
                 items = ["bar","dyn/cm2","ftAgua","hPa","inAgua",
-                         "kPA","MPa","mbar","mmHg","Pa","psi","atm","Torr"];
+                         "kPa","MPa","mbar","mmHg","Pa","psi","atm","Torr"];
                 HV.UNITS[unittype].sort();
                 count = HV.UNITS[unittype].length;
                 for (; i < count; ++i) {

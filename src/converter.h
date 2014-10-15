@@ -24,6 +24,25 @@ template <typename T> auto getType(T t) -> decltype(t)
     }
 }
 
+template <typename T> double convertdBm(T value)
+{
+    if (value == 0 || value < 0) {
+        value = 0;
+        return value;
+    } else {
+        return 10 * log10(static_cast<double>(value));
+    }
+}
+
+template <typename T> double convertdBW(T value)
+{
+    if (value == 0 || value < 0) {
+        return 0.0;
+    } else {
+        return 10 * log10(static_cast<double>(value));
+    }
+}
+
 class Converter : public QObject
 {
 

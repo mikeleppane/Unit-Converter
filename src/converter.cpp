@@ -2,6 +2,8 @@
 #include <QMap>
 #include <QRegExp>
 #include <QMetaEnum>
+#include <QtCore/QtMath>
+#include <math.h>
 #include "converter.h"
 
 Converter::Converter(QObject *parent) : QObject(parent) {}
@@ -18,6 +20,9 @@ QString Converter::convert2(QString from, QString to, QString value_,
 
     QMetaObject metaObj = this->staticMetaObject;
     QMetaEnum metaEnum = metaObj.enumerator(metaObj.indexOfEnumerator("Units"));
+
+    double P = 1 * qPow(10, value / 10.0);
+    double Pm = 1 * qPow(10, (value - 30) / 10.0);
 
     switch (metaEnum.keysToValue(
         unittype.replace(QRegExp(" "), "").toUpper().toLatin1())) {
@@ -1225,7 +1230,10 @@ QString Converter::convert2(QString from, QString to, QString value_,
                                      << "hp"
                                      << "MW"
                                      << "TW"
-                                     << "W");
+                                     << "W"
+                                     << "dBm"
+                                     << "dBW");
+
         switch (unitOptions.indexOf(unit)) {
         case 0:
             values["hpb2Btu/h"] = QString::number(value * 33471.403350169);
@@ -1238,6 +1246,9 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["hpb2MW"] = QString::number(value * 0.0098095);
             values["hpb2TW"] = QString::number(value * 0.00000001);
             values["hpb2W"] = QString::number(value * 9809.5);
+            values["hpb2dBm"] =
+                QString::number(convertdBm(value * 9809.5 * 1e3));
+            values["hpb2dBW"] = QString::number(convertdBW(value * 9809.5));
 
             return values[from2to];
 
@@ -1252,6 +1263,10 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["Btu/h2MW"] = QString::number(value * 0.000038392);
             values["Btu/h2TW"] = QString::number(value * 2.930710702e-13);
             values["Btu/h2W"] = QString::number(value * 0.29307107);
+            values["Btu/h2dBm"] =
+                QString::number(convertdBm(value * 0.29307107 * 1e3));
+            values["Btu/h2dBW"] =
+                QString::number(convertdBW(value * 0.29307107));
 
             return values[from2to];
 
@@ -1266,6 +1281,9 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["cal/s2MW"] = QString::number(value * 0.000004187);
             values["cal/s2TW"] = QString::number(value * 4.1868e-12);
             values["cal/s2W"] = QString::number(value * 4.1868);
+            values["cal/s2dBm"] =
+                QString::number(convertdBm(value * 4.1868 * 1e3));
+            values["cal/s2dBW"] = QString::number(convertdBW(value * 4.1868));
 
             return values[from2to];
 
@@ -1280,6 +1298,8 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["hpe2MW"] = QString::number(value * 0.000746);
             values["hpe2TW"] = QString::number(value * 7.46e-10);
             values["hpe2W"] = QString::number(value * 746);
+            values["hpe2dBm"] = QString::number(convertdBm(value * 746 * 1e3));
+            values["hpe2dBW"] = QString::number(convertdBW(value * 746));
 
             return values[from2to];
 
@@ -1294,6 +1314,10 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["ftlb/s2MW"] = QString::number(value * 0.000001356);
             values["ftlb/s2TW"] = QString::number(value * 1.355817948e-12);
             values["ftlb/s2W"] = QString::number(value * 1.355817948);
+            values["ftlb/s2dBm"] =
+                QString::number(convertdBm(value * 1.355817948 * 1e3));
+            values["ftlb/s2dBW"] =
+                QString::number(convertdBW(value * 1.355817948));
 
             return values[from2to];
 
@@ -1308,6 +1332,8 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["GW2MW"] = QString::number(value * 1000);
             values["GW2TW"] = QString::number(value * 0.001);
             values["GW2W"] = QString::number(value * 1000000000);
+            values["GW2dBm"] = QString::number(convertdBm(value * 1e9 * 1e3));
+            values["GW2dBW"] = QString::number(convertdBW(value * 1e9));
 
             return values[from2to];
 
@@ -1322,6 +1348,8 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["kW2MW"] = QString::number(value * 0.001);
             values["kW2TW"] = QString::number(value * 0.000000001);
             values["kW2W"] = QString::number(value * 1000);
+            values["kW2dBm"] = QString::number(convertdBm(value * 1000 * 1e3));
+            values["kW2dBW"] = QString::number(convertdBW(value * 1000));
 
             return values[from2to];
 
@@ -1336,6 +1364,9 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["hp2MW"] = QString::number(value * 0.000735499);
             values["hp2TW"] = QString::number(value * 7.3549875e-10);
             values["hp2W"] = QString::number(value * 735.49875);
+            values["hp2dBm"] =
+                QString::number(convertdBm(value * 735.49875 * 1e3));
+            values["hp2dBW"] = QString::number(convertdBW(value * 735.49875));
 
             return values[from2to];
 
@@ -1350,6 +1381,9 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["MW2hpb"] = QString::number(value * 101.941995005);
             values["MW2TW"] = QString::number(value * 0.000001);
             values["MW2W"] = QString::number(value * 1000000);
+            values["MW2dBm"] =
+                QString::number(convertdBm(value * 1000000 * 1e3));
+            values["MW2dBW"] = QString::number(convertdBW(value * 1000000));
 
             return values[from2to];
 
@@ -1364,6 +1398,8 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["TW2MW"] = QString::number(value * 1000000);
             values["TW2hpb"] = QString::number(value * 101941995.00484);
             values["TW2W"] = QString::number(value * 1e12);
+            values["TW2dBm"] = QString::number(convertdBm(value * 1e12 * 1e3));
+            values["TW2dBW"] = QString::number(convertdBW(value * 1e12));
 
             return values[from2to];
 
@@ -1378,6 +1414,42 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["W2MW"] = QString::number(value * 0.000001);
             values["W2hpb"] = QString::number(value * 0.000101942);
             values["W2TW"] = QString::number(value * 1e-12);
+            values["W2dBm"] = QString::number(convertdBm(value * 1e3));
+            values["W2dBW"] = QString::number(convertdBW(value));
+
+            return values[from2to];
+
+        case 11:
+
+            values["dBm2Btu/h"] = QString::number(Pm * 3.412141633);
+            values["dBm2cal/s"] = QString::number(Pm * 0.238845897);
+            values["dBm2hpe"] = QString::number(Pm * 0.001340483);
+            values["dBm2ftlb/s"] = QString::number(Pm * 0.737562149);
+            values["dBm2GW"] = QString::number(Pm * 0.000000001);
+            values["dBm2kW"] = QString::number(Pm * 0.001);
+            values["dBm2hp"] = QString::number(Pm * 0.001359622);
+            values["dBm2MW"] = QString::number(Pm * 0.000001);
+            values["dBm2hpb"] = QString::number(Pm * 0.000101942);
+            values["dBm2TW"] = QString::number(Pm * 1e-12);
+            values["dBm2W"] = QString::number(Pm);
+            values["dBm2dBW"] = QString::number(convertdBW(Pm));
+
+            return values[from2to];
+
+        case 12:
+
+            values["dBW2Btu/h"] = QString::number(P * 3.412141633);
+            values["dBW2cal/s"] = QString::number(P * 0.238845897);
+            values["dBW2hpe"] = QString::number(P * 0.001340483);
+            values["dBW2ftlb/s"] = QString::number(P * 0.737562149);
+            values["dBW2GW"] = QString::number(P * 0.000000001);
+            values["dBW2kW"] = QString::number(P * 0.001);
+            values["dBW2hp"] = QString::number(P * 0.001359622);
+            values["dBW2MW"] = QString::number(P * 0.000001);
+            values["dBW2hpb"] = QString::number(P * 0.000101942);
+            values["dBW2TW"] = QString::number(P * 1e-12);
+            values["dBW2W"] = QString::number(P);
+            values["dBW2dBm"] = QString::number(convertdBm(P * 1000));
 
             return values[from2to];
         }

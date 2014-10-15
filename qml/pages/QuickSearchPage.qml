@@ -247,7 +247,8 @@ Page {
                 proxymodel.insertUnits("numbers",{"binary": "bin", "decimal": "dec",
                                                   "hexadecimal": "hex","octal": "oct"});
                 proxymodel.insertUnits("power",{"boiler horsepower": "hpb","British thermal units per hour": "Btu/h",
-                                       "calorie per second": "cal/s", "electrical horsepower": "hpe",
+                                       "calorie per second": "cal/s","decibel milliwatts": "dBm","decibel watts": "dBW",
+                                       "electrical horsepower": "hpe",
                                        "pound-foot per second": "ftlb/2","gigawatts":"GW","kilowatts":"kW","mechanical horsepower":"hp",
                                        "megawatts": "MW","terawatts": "TW","watts": "W"});
                 proxymodel.insertUnits("pressure",{"standard atmospheres": "atm","bar": "bar",
