@@ -1,6 +1,6 @@
 Name: harbour-unitconverter
 Summary: UnitConverter SailfishOS Application
-Version: 1.8
+Version: 1.9
 Release: 1
 Group: Qt/Qt
 URL: http://example.org/
@@ -19,6 +19,7 @@ PkgConfigBR:
 Requires:
 - sailfishsilica-qt5 >= 0.10.9
 - qt5-qtdeclarative-import-xmllistmodel
+- qt5-qtdeclarative-import-localstorageplugin
 Files:
 - '%{_bindir}'
 - '%{_datadir}/%{name}/qml'
