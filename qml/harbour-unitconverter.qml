@@ -32,6 +32,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "pages"
 import "pages/scripts/HelperVariables.js" as HV
+import "pages/scripts/UnitConververDB.js" as DB
 
 ApplicationWindow
 {
@@ -39,6 +40,7 @@ ApplicationWindow
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 
     Component.onCompleted: {
+        DB.openDB();
         HV.VERSION = logic.getVersion();
     }
 }
