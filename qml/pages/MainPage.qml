@@ -56,6 +56,13 @@ Page {
                 }
             }
             MenuItem {
+                text: qsTr("Favourites")
+                onClicked: {
+                    pageStack.push(Qt.resolvedUrl("FavouritesPage.qml"),
+                                   {"xmlListModel": xmlModel});
+                }
+            }
+            MenuItem {
                 text: qsTr("Ruler")
                 onClicked: pageStack.push(Qt.resolvedUrl("RulerPage.qml"))
             }
@@ -126,6 +133,48 @@ Page {
                     font.pixelSize: Theme.fontSizeLarge
                     color: bgItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 }
+            }
+            Canvas {
+                id: canvas
+                anchors {
+                    right: parent.right
+                    rightMargin: Theme.paddingMedium
+                    verticalCenter: row.verticalCenter
+                }
+                smooth: true
+                width: 75
+                height: 35
+                onPaint: {
+                    var cxt = canvas.getContext('2d')
+                    var width_ = width
+                    var height_ = height
+                    var arrowW_ = 0.45*width_
+                    var arrowH_ = 0.35*height_
+                    cxt.clearRect(0,0,width_,height_)
+                    var gradient1 = cxt.createLinearGradient(0,0,
+                                                             canvas.width,0)
+                    gradient1.addColorStop(0, '#FAF0E6')
+                    gradient1.addColorStop(0.25, "#F0D1B2")
+                    gradient1.addColorStop(0.5, "#E6B280")
+                    gradient1.addColorStop(0.75, "#DB944D")
+                    gradient1.addColorStop(1.0, "#D17519")
+                    //cxt.strokeStyle = gradient1;
+                    //cxt.stroke();
+                    cxt.fillStyle = gradient1
+                    cxt.beginPath()
+                    //cxt.moveTo(0,height_/2)
+                    //cxt.lineTo(arrowW_,0)
+                    //cxt.lineTo(arrowW_,(height_-arrowH_)/2)
+                    //cxt.lineTo(width_-arrowW_,(height_-arrowH_)/2)
+                    //cxt.lineTo(width_-arrowW_,0)
+                    cxt.moveTo(width_,height_/2)
+                    cxt.lineTo(width_-arrowW_,height_)
+                    cxt.lineTo(width_-arrowW_,0)
+                    cxt.fill()
+                    cxt.closePath()
+                }
+                opacity: 0.75
+                z: -1
             }
             onClicked: {
                 pageStack.push(Qt.resolvedUrl("UnitConvertPage.qml"),
