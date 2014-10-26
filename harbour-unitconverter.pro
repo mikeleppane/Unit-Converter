@@ -33,7 +33,10 @@ OTHER_FILES += qml/harbour-unitconverter.qml \
     qml/pages/OptionsPage.qml \
     qml/pages/components/Line.qml \
     qml/pages/scripts/Logic.js \
-    qml/pages/components/AcceptPopup.qml
+    qml/pages/components/AcceptPopup.qml \
+    qml/pages/scripts/UnitConververDB.js \
+    qml/pages/FavouritesPage.qml \
+    qml/pages/FavouriteDialog.qml
 
 HEADERS += \
     src/custommodel.h \
