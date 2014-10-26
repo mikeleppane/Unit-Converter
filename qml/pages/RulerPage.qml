@@ -10,6 +10,12 @@ Page {
     backNavigation: false
 
     property var lineObj: null
+    property real cRatio: 9.74 //9.636614173228347
+
+    FontLoader {
+        id: digitalFont
+        source: "qrc:/fonts/fonts/DS-DIGI.TTF"
+    }
 
     SilicaFlickable {
         id: flickable
@@ -24,24 +30,26 @@ Page {
             }
             Label {
                 id: measurementMM
-                text: lineObj !== null ? Number(lineObj.objW / 9.6456693).toFixed(1) + ", " +
-                                         Number(lineObj.objH / 9.6456693).toFixed(1) + " mm" : ""
+                text: lineObj !== null ? Number(lineObj.objW / cRatio).toFixed(1) + ", " +
+                                         Number(lineObj.objH / cRatio).toFixed(1) + " mm" : ""
                 font.bold: true
 
                 color: "#0066CC"
                 font.pixelSize: Theme.fontSizeLarge
-                font.family: "Georgia"
+                font.family: "Modern"
+                //font.family: digitalFont.name
             }
             Label {
                 id: measurementInch
                 anchors.left: measurementMM.left
-                text: lineObj !== null ? Number(lineObj.objW / 9.6456693 * 0.039370079).toFixed(2) + ", " +
-                                         Number(lineObj.objH / 9.6456693 * 0.039370079).toFixed(2) + " in" : ""
+                text: lineObj !== null ? Number(lineObj.objW / cRatio * 0.039370079).toFixed(2) + ", " +
+                                         Number(lineObj.objH / cRatio * 0.039370079).toFixed(2) + " in" : ""
                 font.bold: true
 
                 color: "#0066CC"
                 font.pixelSize: Theme.fontSizeLarge
-                font.family: "Georgia"
+                //font.family: digitalFont.name
+                font.family: "Modern"
             }
             rotation: 90
             transform: Translate{y: -150; x: 50}
