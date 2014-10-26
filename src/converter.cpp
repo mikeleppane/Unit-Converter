@@ -1,5 +1,7 @@
 #include <QString>
 #include <QMap>
+#include <QVector>
+#include <QSet>
 #include <QRegExp>
 #include <QMetaEnum>
 #include <QtCore/QtMath>
@@ -17,7 +19,6 @@ QString Converter::convert2(QString from, QString to, QString value_,
     QString toCurrency = to;
     QString from2to = from + "2" + to;
     QMap<QString, QString> values;
-
     QMetaObject metaObj = this->staticMetaObject;
     QMetaEnum metaEnum = metaObj.enumerator(metaObj.indexOfEnumerator("Units"));
 
@@ -28,6 +29,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
         unittype.replace(QRegExp(" "), "").toUpper().toLatin1())) {
 
     case ACCELERATION:
+
         values["m/s22cm/s2"] = QString::number(value * 100);
         values["m/s22mm/s2"] = QString::number(value * 1000);
         values["m/s22ft/s2"] = QString::number(value * 3.280839895);
