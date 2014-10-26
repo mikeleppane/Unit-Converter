@@ -157,7 +157,6 @@ Page {
             var i = 0, count = 0;
             if (unittype === "ACCELERATION") {
                 items = ["cm/s2","ft/s2","g","m/s2","mm/s2"];
-                listView.header
                 pageHeader.title = "Acceleration";
                 HV.UNITS[unittype].sort();
                 count = HV.UNITS[unittype].length
@@ -167,7 +166,6 @@ Page {
                 }
             } else if (unittype === "ANGLE") {
                 items = ["deg","grad","rad"];
-                listView.header
                 pageHeader.title = "Angle";
                 HV.UNITS[unittype].sort();
                 count = HV.UNITS[unittype].length
