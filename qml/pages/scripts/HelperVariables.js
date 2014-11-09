@@ -110,7 +110,7 @@ var UNITS = {
 
     VOLUME: ["Centiliters", "Cubic Centimeters", "Cubic Feet",
         "Cubic Inches", "Cubic Kilometers", "Cubic Meters", "Cubic Miles",
-        "Cubic Yards", "Liters", "Milliliters", "US Liquid Gallons",
+        "Cubic Millimeters","Cubic Yards", "Liters", "Milliliters", "US Liquid Gallons",
         "US Liquid Ounces", "US Liquid Quarts"
     ],
 }
