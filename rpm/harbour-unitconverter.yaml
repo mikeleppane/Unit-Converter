@@ -1,6 +1,6 @@
 Name: harbour-unitconverter
 Summary: UnitConverter SailfishOS Application
-Version: 1.9
+Version: 2.1
 Release: 1
 Group: Qt/Qt
 URL: http://example.org/
@@ -29,4 +29,5 @@ Files:
 #- /usr/share/harbour-unitconverter
 #- /usr/share/applications
 #- /usr/share/icons/hicolor/86x86/apps
-PkgBR: [qt5-qtdeclarative-import-xmllistmodel]
+PkgBR: [qt5-qtdeclarative-import-xmllistmodel,
+        qt5-qtdeclarative-import-localstorageplugin]
