@@ -110,13 +110,18 @@ Page {
                     horizontalAlignment: TextInput.AlignLeft
                     label: items[HV.UNITS[unittype].indexOf(unitName)] //unittype !== "CURRENCY" ? items[HV.UNITS[unittype].indexOf(unitName)] :
                            //unitName === "Euro" ? "EUR" : xmlListModel.get(HV.UNITS[unittype].indexOf(unitName)-1).currency
-                    validator: DoubleValidator{}
                     errorHighlight: text ? !acceptableInput : false
-                    inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
+                    inputMethodHints: unittype !== "NUMBERS" ? Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText :
+                                                               Qt.ImhNoPredictiveText
+                    validator: RegExpValidator{regExp: /^[0-9\+\-\,a-zA-Z]*$/}
 
                     EnterKey.onClicked: {
                         if (text.length === 0 || text === 0) {
-                            calculateConversion(0.0, unitName)
+                            if (unittype !== "NUMBERS") {
+                                calculateConversion(0.0, unitName)
+                            } else {
+                                calculateConversion(0, unitName)
+                            }
                         }
                         focus = false;
                     }
@@ -137,13 +142,21 @@ Page {
                     onTextChanged: {
                         if (activeUnitName === unitName) {
                             if (text === "") {
-                                calculateConversion(0.0, unitName)
-                            } else {
-                                var value_ = Number(text.replace(",","."));
-                                if (isFinite(value_)) {
-                                    calculateConversion(value_, unitName)
-                                } else {
+                                if (unittype !== "NUMBERS") {
                                     calculateConversion(0.0, unitName)
+                                } else {
+                                    calculateConversion(0, unitName)
+                                }
+                            } else {
+                                if (unittype === "NUMBERS") {
+                                    calculateConversion(text, unitName)
+                                } else {
+                                    var value_ = Number(text.replace(",","."));
+                                    if (isFinite(value_)) {
+                                        calculateConversion(value_, unitName)
+                                    } else {
+                                        calculateConversion(0.0, unitName)
+                                    }
                                 }
                             }
                         }
@@ -367,8 +380,8 @@ Page {
                 }
             } else if (unittype === "VOLUME") {
                 pageHeader.title = "Volume";
-                items = ["gal","oz","qt","cl","cm3","f3","in3","km3","m3",
-                         "mi3","yd3","l","ml"];
+                items = ["cl","cm3","f3","in3","km3","m3",
+                         "mi3","mm3","yd3","l","ml","gal","oz","qt"];
                 HV.UNITS[unittype].sort();
                 count = HV.UNITS[unittype].length;
                 for (; i < count; ++i) {

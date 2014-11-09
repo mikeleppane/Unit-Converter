@@ -236,8 +236,8 @@ Dialog {
                 toUnitModel.append({"name": HV.UNITS[unittype][i]});
             }
         } else if (unittype === "VOLUME") {
-            items = ["gal","oz","qt","cl","cm3","f3","in3","km3","m3",
-                     "mi3","yd3","l","ml"];
+            items = ["cl","cm3","f3","in3","km3","m3",
+                     "mi3","mm3","yd3","l","ml","gal","oz","qt"];
             HV.UNITS[unittype].sort();
             count = HV.UNITS[unittype].length;
             for (; i < count; ++i) {
@@ -345,13 +345,18 @@ Dialog {
                  placeholderColor: "white"
                  horizontalAlignment: TextInput.AlignLeft
                  label: "Value from"
-                 validator: DoubleValidator{}
+                 validator: RegExpValidator{regExp: /^[0-9\+\-\,a-zA-Z]*$/}
                  errorHighlight: text ? !acceptableInput : false
-                 inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText
+                 inputMethodHints: unittype !== "NUMBERS" ? Qt.ImhDigitsOnly | Qt.ImhNoPredictiveText :
+                                                            Qt.ImhNoPredictiveText
 
                  EnterKey.onClicked: {
                      if (text.length === 0 || text === 0) {
-                         calculateConversion(0.0, unitName)
+                         if (unittype !== "NUMBERS") {
+                            calculateConversion(0.0)
+                         } else {
+                            calculateConversion(0)
+                         }
                      }
                      focus = false;
                  }
@@ -359,13 +364,21 @@ Dialog {
 
                  onTextChanged: {
                      if (text === "") {
-                         toField.text = calculateConversion(0.0)
-                     } else {
-                         var value_ = Number(text.replace(",","."));
-                         if (isFinite(value_)) {
-                             toField.text = calculateConversion(value_)
-                         } else {
+                         if (unittype !== "NUMBERS") {
                              toField.text = calculateConversion(0.0)
+                         } else {
+                             toField.text = calculateConversion(0)
+                         }
+                     } else {
+                         if (unittype === "NUMBERS") {
+                             toField.text = calculateConversion(text)
+                         } else {
+                             var value_ = Number(text.replace(",","."));
+                             if (isFinite(value_)) {
+                                 toField.text = calculateConversion(value_)
+                             } else {
+                                 toField.text = calculateConversion(0.0)
+                             }
                          }
                      }
                  }
@@ -395,13 +408,21 @@ Dialog {
                 onCurrentIndexChanged: {
                     var text = fromField.text;
                     if (text === "") {
-                        toField.text = calculateConversion(0.0)
-                    } else {
-                        var value_ = Number(text.replace(",","."));
-                        if (isFinite(value_)) {
-                            toField.text = calculateConversion(value_)
-                        } else {
+                        if (unittype !== "NUMBERS") {
                             toField.text = calculateConversion(0.0)
+                        } else {
+                            toField.text = calculateConversion(0)
+                        }
+                    } else {
+                        if (unittype === "NUMBERS") {
+                            toField.text = calculateConversion(text)
+                        } else {
+                            var value_ = Number(text.replace(",","."));
+                            if (isFinite(value_)) {
+                                toField.text = calculateConversion(value_)
+                            } else {
+                                toField.text = calculateConversion(0.0)
+                            }
                         }
                     }
                 }
@@ -424,7 +445,11 @@ Dialog {
                  readOnly: true
                  EnterKey.onClicked: {
                      if (text.length === 0 || text === 0) {
-                         calculateConversion(0.0, unitName)
+                         if (unittype !== "NUMBERS") {
+                             text = calculateConversion(0.0)
+                         } else {
+                             text = calculateConversion(0)
+                         }
                      }
                      focus = false;
                  }

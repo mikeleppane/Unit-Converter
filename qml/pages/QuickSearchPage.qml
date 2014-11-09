@@ -270,7 +270,7 @@ Page {
                                        "pound-force inch": "lbf-in"});
                 proxymodel.insertUnits("volume",{"centiliters": "cl","cubic centimeters": "cm3","cubic feet": "f3",
                                        "cubic inches": "in3", "cubic kilometers": "km3","cubic meters": "m3",
-                                       "cubic miles": "mi3", "cubic yards": "yd3","liters": "l","milliliters": "ml",
+                                       "cubic miles": "mi3", "cubic millimeters": "mm3", "cubic yards": "yd3","liters": "l","milliliters": "ml",
                                        "US liquid gallons": "gal", "US liquid ounces": "oz","US liquid quarts":"qt"});
                 proxymodel.setupModel()
             }
