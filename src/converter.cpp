@@ -710,16 +710,17 @@ QString Converter::convert2(QString from, QString to, QString value_,
                                      << "mpg");
         switch (unitOptions.indexOf(unit)) {
         case 0:
-            values["km/L2L/100km"] = QString::number(value * 100);
+            values["km/L2L/100km"] = QString::number(100/value);
             values["km/L2mpg"] = QString::number(value * 2.352145833);
+
             return values[from2to];
         case 1:
-            values["L/100km2km/L"] = QString::number(value * 100);
-            values["L/100km2mpg"] = QString::number(value * 235.214583295);
+            values["L/100km2km/L"] = QString::number(100/value);
+            values["L/100km2mpg"] = QString::number(235.214583295/value);
             return values[from2to];
         case 2:
             values["mpg2km/L"] = QString::number(value * 0.425143707);
-            values["mpg2L/100km"] = QString::number(value * 235.214583295);
+            values["mpg2L/100km"] = QString::number(235.214583295/value);
             return values[from2to];
         }
     case LENGTH:
@@ -2038,7 +2039,8 @@ QString Converter::convert2(QString from, QString to, QString value_,
                                      << "ml"
                                      << "gal"
                                      << "oz"
-                                     << "qt");
+                                     << "qt"
+                                     << "mm3");
         switch (unitOptions.indexOf(unit)) {
         case 0:
             values["cl2cm3"] = QString::number(value * 10);
@@ -2053,6 +2055,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["cl2gal"] = QString::number(value * 0.002641721);
             values["cl2oz"] = QString::number(value * 0.338140227);
             values["cl2qt"] = QString::number(value * 0.010566882);
+            values["cl2mm3"] = QString::number(value * 10000);
 
             return values[from2to];
 
@@ -2069,6 +2072,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["cm32gal"] = QString::number(value * 0.000264172);
             values["cm32oz"] = QString::number(value * 0.033814023);
             values["cm32qt"] = QString::number(value * 0.001056688);
+            values["cm32mm3"] = QString::number(value * 1000);
 
             return values[from2to];
 
@@ -2085,6 +2089,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["f32gal"] = QString::number(value * 7.480519481);
             values["f32oz"] = QString::number(value * 957.506493506);
             values["f32qt"] = QString::number(value * 29.922077922);
+            values["f32mm3"] = QString::number(value * 28316846.592);
 
             return values[from2to];
 
@@ -2101,6 +2106,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["in32gal"] = QString::number(value * 0.004329004);
             values["in32oz"] = QString::number(value * 0.554112554);
             values["in32qt"] = QString::number(value * 0.017316017);
+            values["in32mm3"] = QString::number(value * 16387.064);
 
             return values[from2to];
 
@@ -2117,6 +2123,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["km32gal"] = QString::number(value * 2.641720524e11);
             values["km32oz"] = QString::number(value * 3.38140227e13);
             values["km32qt"] = QString::number(value * 1.056688209e12);
+            values["km32mm3"] = QString::number(value * 1e18);
 
             return values[from2to];
 
@@ -2133,6 +2140,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["m32gal"] = QString::number(value * 264.172052358);
             values["m32oz"] = QString::number(value * 33814.022701843);
             values["m32qt"] = QString::number(value * 1056.688209433);
+            values["m32mm3"] = QString::number(value * 1000000000.0);
 
             return values[from2to];
 
@@ -2149,6 +2157,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["mi32gal"] = QString::number(value * 1.101117147e12);
             values["mi32oz"] = QString::number(value * 1.409429949e14);
             values["mi32qt"] = QString::number(value * 4.40446859e12);
+            values["mi32mm3"] = QString::number(value * 4.168181825e18);
 
             return values[from2to];
 
@@ -2165,6 +2174,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["yd32gal"] = QString::number(value * 201.974025974);
             values["yd32oz"] = QString::number(value * 25852.675324675);
             values["yd32qt"] = QString::number(value * 807.896103896);
+            values["yd32mm3"] = QString::number(value * 764554857.984);
 
             return values[from2to];
 
@@ -2181,6 +2191,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["l2gal"] = QString::number(value * 0.264172052);
             values["l2oz"] = QString::number(value * 33.814022702);
             values["l2qt"] = QString::number(value * 1.056688209);
+            values["l2mm3"] = QString::number(value * 1000000);
 
             return values[from2to];
 
@@ -2197,6 +2208,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["ml2gal"] = QString::number(value * 0.000264172);
             values["ml2oz"] = QString::number(value * 0.033814023);
             values["ml2qt"] = QString::number(value * 0.001056688);
+            values["ml2mm3"] = QString::number(value * 1000);
 
             return values[from2to];
 
@@ -2213,6 +2225,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["gal2cl"] = QString::number(value * 378.5411784);
             values["gal2oz"] = QString::number(value * 128);
             values["gal2qt"] = QString::number(value * 4);
+            values["gal2mm3"] = QString::number(value * 3785411.784);
 
             return values[from2to];
 
@@ -2229,6 +2242,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["oz2gal"] = QString::number(value * 0.0078125);
             values["oz2cl"] = QString::number(value * 2.957352956);
             values["oz2qt"] = QString::number(value * 0.03125);
+            values["oz2mm3"] = QString::number(value * 29573.5295625);
 
             return values[from2to];
 
@@ -2245,6 +2259,24 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["qt2gal"] = QString::number(value * 0.25);
             values["qt2oz"] = QString::number(value * 32);
             values["qt2cl"] = QString::number(value * 94.6352946);
+            values["qt2mm3"] = QString::number(value * 946352.946);
+
+            return values[from2to];
+
+        case 13:
+            values["mm32cm3"] = QString::number(value * 0.001);
+            values["mm32f3"] = QString::number(value * 0.000000035);
+            values["mm32in3"] = QString::number(value * 0.000061024);
+            values["mm32km3"] = QString::number(value * 1e-18);
+            values["mm32m3"] = QString::number(value * 0.000000001);
+            values["mm32mi3"] = QString::number(value * 2.399127586e-19);
+            values["mm32yd3"] = QString::number(value * 0.000000001);
+            values["mm32l"] = QString::number(value * 0.000001);
+            values["mm32ml"] = QString::number(value * 0.001);
+            values["mm32gal"] = QString::number(value * 0.000000264);
+            values["mm32oz"] = QString::number(value * 0.000033814);
+            values["mm32cl"] = QString::number(value * 0.0001);
+            values["mm32qt"] = QString::number(value * 0.000001057);
 
             return values[from2to];
         }
@@ -2255,8 +2287,8 @@ QString Converter::convert2(QString from, QString to, QString value_,
     return QString::number(0.0);
 }
 
-QString Converter::convert2Numbers(QString from, QString to, QString value_)
-    const
+QString Converter::convert2Numbers(QString from, QString to,
+                                   QString value_) const
 {
     QStringList unitOptions;
     QString unit = from;
