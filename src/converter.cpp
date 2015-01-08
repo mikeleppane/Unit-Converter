@@ -1800,10 +1800,10 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["day2us"] = QString::number(value * 8.64e10);
             values["day2min"] = QString::number(value * 1440);
             values["day2ms"] = QString::number(value * 86400000);
-            values["day2ns"] = QString::number(value * 1.728e14);
-            values["day2s"] = QString::number(value * 172800);
+            values["day2ns"] = QString::number(value * 8.64e+13);
+            values["day2s"] = QString::number(value * 86400);
             values["day2yr"] = QString::number(value * 0.002739726);
-            values["day2wk"] = QString::number(value * 0.285714286);
+            values["day2wk"] = QString::number(value * 0.142857143);
 
             return values[from2to];
 
@@ -1883,7 +1883,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["yr2hr"] = QString::number(value * 8760);
             values["yr2us"] = QString::number(value * 3.1536e13);
             values["yr2min"] = QString::number(value * 525600);
-            values["yr2ms"] = QString::number(value * 3.1536e10);
+            values["yr2ms"] = QString::number(value * 3.1536e13);
             values["yr2ns"] = QString::number(value * 3.1536e16);
             values["yr2s"] = QString::number(value * 31536000);
             values["yr2day"] = QString::number(value * 365);
