@@ -91,7 +91,7 @@ Page {
                     id: unit
                     width: parent.width
                     transform: Translate{x: 10}
-                    text: unitName
+                    text: String(unitName).toLowerCase()
                     font.pixelSize: Theme.fontSizeMedium + 5
                     color: "#3399CC" //bgItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                     truncationMode: TruncationMode.Fade

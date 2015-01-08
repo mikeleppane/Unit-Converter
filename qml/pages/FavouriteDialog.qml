@@ -315,7 +315,7 @@ Dialog {
                     Repeater {
                          id: rep2
                          model: ListModel { id: fromUnitModel }
-                         MenuItem { text: model.name }
+                         MenuItem { text: String(model.name).toLowerCase() }
                     }
                 }
                 onCurrentIndexChanged: {
@@ -402,7 +402,7 @@ Dialog {
                     Repeater {
                          id: rep3
                          model: ListModel { id: toUnitModel }
-                         MenuItem { text: model.name }
+                         MenuItem { text: String(model.name).toLowerCase() }
                     }
                 }
                 onCurrentIndexChanged: {

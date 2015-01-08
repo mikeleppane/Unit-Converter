@@ -25,4 +25,8 @@
         <file>images/unit_icon_22.png</file>
         <file>images/unit_icon_23.png</file>
     </qresource>
+    <qresource prefix="/fonts">
+        <file>fonts/DS-DIGI.TTF</file>
+        <file>fonts/DS-DIGII.TTF</file>
+    </qresource>
 </RCC>

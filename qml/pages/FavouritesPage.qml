@@ -89,7 +89,7 @@ Page {
                 Text {
                     width: favouritesPage.width
                     horizontalAlignment: Text.AlignHCenter
-                    text: fromUnit + " (" + fromUnitAbb + ")"
+                    text: String(fromUnit).toLowerCase() + " (" + fromUnitAbb + ")"
                     font.pixelSize: Theme.fontSizeMedium
                     color:Theme.primaryColor
                     font.family: Theme.fontFamily
@@ -156,7 +156,7 @@ Page {
                 Text {
                     width: favouritesPage.width
                     horizontalAlignment: Text.AlignHCenter
-                    text: toUnit + " (" + toUnitAbb + ")"
+                    text: String(toUnit).toLowerCase() + " (" + toUnitAbb + ")"
                     font.pixelSize: Theme.fontSizeMedium
                     color: Theme.primaryColor
                     font.family: Theme.fontFamily

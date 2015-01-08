@@ -84,8 +84,9 @@ Page {
                      for (; i < count; i++) {
                          items[get(i).currency] = get(i).rate;
                      }
+
                      if (HV.UNITS["CURRENCY"].length - 1 !== Object.getOwnPropertyNames(items).length) {
-                         console.log("fetch currensies has been changed and does not match the currency table...")
+                         console.log("Currensies has been changed and does not match the currency table...")
                      }
                      converter.getCurrencies(items)
                      proxymodel.updateCurrencies(items)

@@ -144,7 +144,7 @@ Page {
                     verticalCenter: parent.verticalCenter
                 }
                 font.pixelSize: Theme.fontSizeLarge
-                text: Theme.highlightText(display,searchString,Theme.highlightColor)
+                text: String(Theme.highlightText(display,searchString,Theme.highlightColor)).toLowerCase()
                 color: item.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
 
