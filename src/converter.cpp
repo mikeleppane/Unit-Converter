@@ -844,7 +844,7 @@ QString Converter::convert2(QString from, QString to, QString value_,
             values["in2au"] = QString::number(value * 1.697885129158e-13);
             values["in2cm"] = QString::number(value * 2.54);
             values["in2dm"] = QString::number(value * 0.254);
-            values["in2ft"] = QString::number(value / 0.12);
+            values["in2ft"] = QString::number(value / 12);
             values["in2km"] = QString::number(value * 0.0000254);
             values["in2ly"] = QString::number(value * 2.684782118423e-18);
             values["in2m"] = QString::number(value * 2.684782118423e-18);
