@@ -23,7 +23,7 @@ var UNITS = {
     ],
     CURRENCY: ["Euro", "US Dollar", "Japanese Yen", "Bulgarian Lev",
         "Czech Koruna", "Danish Krone", "Pound Sterling",
-        "Hungarian Forint", "Lithuanian Litas", "Polish Zloty",
+        "Hungarian Forint","Polish Zloty",
         "New Romanian Leu", "Swedish Krona", "Swiss Franc",
         "Norwegian Krone", "Croatian Kuna", "Russian Rouble",
         "Turkish Lira", "Australian Dollar", "Brasilian Real",
