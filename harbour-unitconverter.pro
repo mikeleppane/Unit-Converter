@@ -9,11 +9,13 @@
 TARGET = harbour-unitconverter
 
 CONFIG += sailfishapp c++11
+QT += network
 
 SOURCES += src/harbour-unitconverter.cpp \
     src/custommodel.cpp \
     src/converter.cpp \
-    src/logic.cpp
+    src/logic.cpp \
+    src/currencycache.cpp
 
 OTHER_FILES += qml/harbour-unitconverter.qml \
     qml/cover/CoverPage.qml \
@@ -41,7 +43,8 @@ OTHER_FILES += qml/harbour-unitconverter.qml \
 HEADERS += \
     src/custommodel.h \
     src/converter.h \
-    src/logic.h
+    src/logic.h \
+    src/currencycache.h
 
 RESOURCES += \
     MyResource.qrc

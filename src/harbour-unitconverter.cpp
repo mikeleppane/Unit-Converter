@@ -41,20 +41,26 @@
 #include "converter.h"
 #include "custommodel.h"
 #include "logic.h"
+#include "currencycache.h"
 
 int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
 
+    QCoreApplication::setOrganizationName("harbour-unitconverter");
+    QCoreApplication::setApplicationName("harbour-unitconverter");
+
     Converter converter;
     CustomModel custom_model;
     Logic logic;
+    CurrencyCache currency_cache;
 
     QScopedPointer<QQuickView> view(SailfishApp::createView());
 
     view->rootContext()->setContextProperty("converter", &converter);
     view->rootContext()->setContextProperty("proxymodel", &custom_model);
     view->rootContext()->setContextProperty("logic", &logic);
+    view->rootContext()->setContextProperty("currencycache", &currency_cache);
 
     view->setSource(SailfishApp::pathTo("qml/harbour-unitconverter.qml"));
 
