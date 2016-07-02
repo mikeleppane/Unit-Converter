@@ -61,10 +61,13 @@ void CurrencyCache::checkUpdate()
             updateNow();
         }
         break;
+    case ALWAYS:
+        updateNow();
+        break;
     case NEVER:
-        return;
         break;
     default:
+        qDebug() << "Unknown update rate" << _interval;
         break;
     }
 }

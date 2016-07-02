@@ -22,7 +22,8 @@ public:
         DAILY = 0,
         WEEKLY = 1,
         MONTHLY = 2,
-        NEVER = 3
+        ALWAYS = 3,
+        NEVER = 4
     };
 
     Q_INVOKABLE QString XML();

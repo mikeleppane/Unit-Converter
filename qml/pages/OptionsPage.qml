@@ -96,6 +96,7 @@ Dialog {
                     MenuItem { text: qsTr("Daily update"); font.family: "Verdana" }
                     MenuItem { text: qsTr("Weekly update"); font.family: "Verdana" }
                     MenuItem { text: qsTr("Monthly update"); font.family: "Verdana" }
+                    MenuItem { text: qsTr("Always at application start"); font.family: "Verdana" }
                     MenuItem { text: qsTr("Disable automatic update"); font.family: "Verdana" }
                 }
             }
