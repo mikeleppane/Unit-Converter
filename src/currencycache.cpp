@@ -89,6 +89,7 @@ void CurrencyCache::setInterval(CurrencyCache::UpdateInterval interval)
 {
     _interval = interval;
     _settings.setValue("interval", interval);
+    checkUpdate();;
 }
 
 void CurrencyCache::getReply(QNetworkReply *reply)
