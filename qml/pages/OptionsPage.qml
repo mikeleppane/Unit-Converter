@@ -15,11 +15,15 @@ Dialog {
         anchors.fill: parent
         clip: true
         focus: true
+        contentHeight: col.height + dialogHeader.height + 2*Theme.paddingMedium
 
         DialogHeader {
             id: dialogHeader
             width: parent.width
         }
+
+        ScrollDecorator {}
+
         Column {
             id: col
             anchors {
@@ -71,16 +75,43 @@ Dialog {
                     }
                 }
             }
-
+            TextArea {
+                focus: true
+                font.family: "Verdana"
+                width: parent.width
+                color: Theme.primaryColor
+                font.pixelSize: Theme.fontSizeSmall
+                wrapMode: TextEdit.WordWrap
+                text: qsTr("You can change the rate at which the currency rates are updated." +
+                           "If you disable the automatic update, you have to start the update process manually.")
+                readOnly: true
+            }
+            ComboBox {
+                id: intervalselection
+                visible: true
+                label: qsTr("Select update interval")
+                width: parent.width
+                currentIndex: currencycache.interval()
+                menu: ContextMenu {
+                    MenuItem { text: qsTr("Daily update"); font.family: "Verdana" }
+                    MenuItem { text: qsTr("Weekly update"); font.family: "Verdana" }
+                    MenuItem { text: qsTr("Monthly update"); font.family: "Verdana" }
+                    MenuItem { text: qsTr("Always at application start"); font.family: "Verdana" }
+                    MenuItem { text: qsTr("Disable automatic update"); font.family: "Verdana" }
+                }
+            }
+            Button {
+                text: qsTr("Update currency cache")
+                width: parent.width
+                onClicked: currencycache.updateNow()
+            }
         }
+    }
+    onAccepted: {
+        currencycache.setInterval(intervalselection.currentIndex)
     }
     onOpened: {
         hActivationSwitch.checked = HV.HORIZONTALLINESACTIVE;
         vActivationSwitch.checked = HV.VERTICALLINESACTIVE;
     }
-    /*
-    onAccepted: {
-    }
-    */
-
 }

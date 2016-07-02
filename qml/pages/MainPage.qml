@@ -70,7 +70,7 @@ Page {
 
         XmlListModel {
              id: xmlModel
-             source: url
+             xml: currencycache.xml
              namespaceDeclarations: "declare namespace gesmes='http://www.gesmes.org/xml/2002-08-01';"
                                     +"declare default element namespace 'http://www.ecb.int/vocabulary/2002-08-01/eurofxref';"
              query: "/gesmes:Envelope/Cube/Cube/Cube"
